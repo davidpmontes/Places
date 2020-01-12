@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="txr-Vi-36c">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,38 +12,41 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PlacesViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-k4-kHA">
-                                <rect key="frame" x="0.0" y="88" width="414" height="359"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="v16-L0-WFt">
+                                <rect key="frame" x="0.0" y="44" width="375" height="303"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="303" id="Lew-Z5-FSB"/>
+                                </constraints>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZUL-6h-kJ1">
-                                <rect key="frame" x="0.0" y="455" width="414" height="407"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHj-FX-xy5">
+                                <rect key="frame" x="0.0" y="364" width="375" height="303"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ZUL-6h-kJ1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3gj-KW-X3C"/>
-                            <constraint firstItem="ZUL-6h-kJ1" firstAttribute="height" secondItem="DZE-k4-kHA" secondAttribute="height" id="DTI-9n-0fp"/>
-                            <constraint firstItem="DZE-k4-kHA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Fk5-ba-G4v"/>
-                            <constraint firstItem="DZE-k4-kHA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jw4-8g-ZD9"/>
-                            <constraint firstItem="DZE-k4-kHA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t7u-pF-bDu"/>
-                            <constraint firstItem="ZUL-6h-kJ1" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uTO-Ha-oWt"/>
-                            <constraint firstItem="ZUL-6h-kJ1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="wbb-wm-4o9"/>
+                            <constraint firstItem="AHj-FX-xy5" firstAttribute="height" secondItem="v16-L0-WFt" secondAttribute="height" id="3VK-De-gM1"/>
+                            <constraint firstItem="v16-L0-WFt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CV8-OK-ufC"/>
+                            <constraint firstItem="AHj-FX-xy5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Erm-An-1Px"/>
+                            <constraint firstItem="v16-L0-WFt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="K0K-zt-RDp"/>
+                            <constraint firstItem="AHj-FX-xy5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TPe-mx-mfZ"/>
+                            <constraint firstItem="AHj-FX-xy5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Uv0-wB-CPm"/>
+                            <constraint firstItem="v16-L0-WFt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eXB-hJ-4wo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Places Near You" id="3vl-1V-3hJ"/>
                     <connections>
-                        <outlet property="mapView" destination="DZE-k4-kHA" id="Lx0-3u-7p6"/>
-                        <outlet property="tableView" destination="ZUL-6h-kJ1" id="lIT-gp-n3M"/>
+                        <outlet property="mapView" destination="v16-L0-WFt" id="kxo-FC-C4U"/>
+                        <outlet property="tableView" destination="AHj-FX-xy5" id="Fgg-Da-OcY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="133.92857142857142"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EKM-ZV-P1f">
@@ -51,7 +54,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="txr-Vi-36c" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AdA-We-Tv3">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
