@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PlacesViewController: UIViewController, CLLocationManagerDelegate {
+class PlacesViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet var mapView:MKMapView?
     @IBOutlet var tableView:UITableView?
@@ -31,6 +31,8 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         
         locationManager?.delegate = self
         locationManager?.startUpdatingLocation()
+        
+        mapView?.delegate = self
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -113,9 +115,54 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             self.isQueryPending = false
+            
+            DispatchQueue.main.async {
+                self.updatePlaces()
+            }
         })
 
         task.resume()
+    }
+    
+    func updatePlaces()
+    {
+        guard mapView != nil else {
+            return
+        }
+        
+        mapView!.removeAnnotations(mapView!.annotations)
+        
+        for place in places
+        {
+            if  let name      = place["name"] as? String,
+                let latitude  = place["latitude"] as? CLLocationDegrees,
+                let longitude = place["longitude"] as? CLLocationDegrees
+            {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                annotation.title = name
+
+                mapView!.addAnnotation(annotation)
+            }
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isKind(of: MKUserLocation.self)
+        {
+            return nil
+        }
+        
+        var view = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView")
+
+        if view == nil {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotationView")
+            view!.canShowCallout = true
+        } else {
+            view!.annotation = annotation
+        }
+        
+        return view
     }
 }
 
