@@ -81,11 +81,32 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             
+            self.places.removeAll()
+            
             do {
                 let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
 
-                print(jsonData)
-
+                if  let jsonObject = jsonData as? [String: Any],
+                    let response   = jsonObject["response"] as? [String: Any],
+                    let venues     = response["venues"] as? [[String: Any]] {
+                    
+                    for venue in venues
+                    {
+                        if  let name             = venue["name"] as? String,
+                            let location         = venue["location"] as? [String: Any],
+                            let latitude         = location["lat"] as? Double,
+                            let longitude        = location["lng"] as? Double,
+                            let formattedAddress = location["formattedAddress"] as? [String]
+                        {
+                            self.places.append([
+                                "name": name,
+                                "address": formattedAddress.joined(separator: " "),
+                                "latitude": latitude,
+                                "longitude": longitude
+                            ])
+                        }
+                    }
+                }
             } catch {
                 print("*** JSON ERROR *** \(error.localizedDescription)")
                 return
